@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "CM3130";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<div class="page-main">
+    <div class=" x_average">
+        <div class="average heBtnMenu">
+            @*<span class="l ml-5">
+            <a class="btn btn-secondary size-S radius" onclick="" href="javascript:;">编辑</a>
+        </span>*@
+            <div class="l">
+                <span class="l ml-5">
+                    部门：
+                </span>
+                <span class="l ml-5 mr-15" style="width:180px;">
+                    <select class="select" name="brandclass" id="systemType" size="1" v-model="moduleType">
+                        <option value="PC">PC</option>
+                        <option value="MOB">MOB</option>
+                    </select>
+                </span>
+            </div>
+            <div class="l">
+                <span class="l ml-5">
+                    状态：
+                </span>
+                <span class="l ml-5 mr-15" style="width:180px;">
+                    <select class="select" name="brandclass" id="systemType" size="1" v-model="moduleType">
+                        <option value="PC">在职</option>
+                        <option value="MOB">离职</option>
+                        <option value="MOB1">退休</option>
+                    </select>
+                </span>
+            </div>
+            <div class="l">
+                <span class="l ml-5">
+                    搜索：
+                </span>
+                <span class="l ml-5" style="width:180px;">
+                    <input type="text" class="input-text dsearch size-MINI" />
+                </span>
+            </div>
+            <div class="r ml-10">
+                <a class="btn btn-success radius size-S" style="line-height:1.6em;" href="javascript:location.replace(location.href);" title="刷新">刷新</a>
+            </div>
+            <div class="r ml-10">
+                <a class="btn btn-primary size-S radius" onclick="system_category_add('新增类别','../TS1012/TS1012')" href="javascript:;">新增人员</a>
+            </div>
+        </div>
+    </div>
+    <div class="tableBlock">
+
+        <div class="mt-5">
+            <table class="table table-border table-bordered table-hover table-bg table-sort">
+                <thead>
+                    <tr class="text-l">
+                        <th class="text-c" width="80px;">序号</th>
+                        <th>
+                            用户账号
+                        </th>
+                        <th>
+                            姓名
+                        </th>
+                        <th>
+                            工号
+                        </th>
+                        <th>所属部门</th>
+                        <th>
+                            职务
+                        </th>
+                        <th>
+                            手机号
+                        </th>
+                        <th>邮箱</th>
+                        <th>
+                            角色
+                        </th>
+                        <th>
+                           状态
+                        </th>
+                        <th class="text-c">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-l">
+                        <td class="text-c" width="80px;">1</td>
+                        <td>
+                            2012010445
+                        </td>
+                        <td>
+                            王帅
+                        </td>
+                        <td>
+                            2012010445
+                        </td>
+                        <td>技术品保部</td>
+                        <td>
+                            厂长
+                        </td>
+                        <td>
+                            18330118268
+                        </td>
+                        <td>wangs@RazorView.com.cn</td>
+                        <td>
+                            超级管理员，取样员
+                        </td>
+                        <td>
+                            在职
+                        </td>
+                        <td class="text-c">
+                            <a title="编辑" href="javascript:;" class="ml-10" style="text-decoration:none"><i class="iconfont sui-icon-bianjishuru"></i></a>
+                            <a title="删除" href="javascript:;" class="ml-10" style="text-decoration:none"><i class="Hui-iconfont">&#xe63f;</i></a>
+                            <a title="删除" href="javascript:;" class="ml-10" style="text-decoration:none"><i class="iconfont sui-icon-empty"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

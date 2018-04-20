@@ -1,0 +1,68 @@
+﻿html, body {
+    width: 100%;
+    background: #F3F3F4;
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+.x_average {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.y_average {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column;
+    flex-flow: column;
+}
+
+.average {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.noborder {
+    border: 0 !important;
+}
+
+.noBordreRadius {
+    border-radius: 0 !important;
+}
+
+.tableBlock {
+    padding: 10px;
+    background: #fff;
+    padding-bottom: 50px;
+}
+
+.page-main {
+    padding: 10px;
+}
+
+.heBtnMenu {
+    width: 100%;
+    display: block;
+    zoom: 1;
+    padding: 5px 10px;
+    background: #fff;
+    float: left;
+    clear: both;
+    border-bottom: 2px solid #f3f3f4;
+}
+.searchMenu {
+
+    overflow:hidden;
+}
+.pt-2 {
+    padding-top: 2.5px;
+}
+.fontWeight {
+    font-weight:700;
+}

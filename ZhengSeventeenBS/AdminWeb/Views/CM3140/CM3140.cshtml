@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "CM3140";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+<div class="page-main">
+    <div class="x_average">
+        <div class="average heBtnMenu">
+            @*<span class="l ml-5">
+                    <a class="btn btn-secondary size-S radius" onclick="" href="javascript:;">编辑</a>
+                </span>*@
+            <span class="r ml-10">
+                <a class="btn btn-success radius size-S" style="line-height:1.6em;" href="javascript:location.replace(location.href);" title="刷新">刷新</a>
+            </span>
+            <span class="r ml-10">
+                <a class="btn btn-secondary size-S radius" onclick="openWuliao('物料特性', '../TS1011/TS1011')" href="javascript:;">物料特性</a>
+            </span>
+            <span class="r ml-10">
+                <a class="btn btn-primary size-S radius" onclick="" href="javascript:;">新增物料</a>
+            </span>
+        </div>
+    </div>
+    <div class="tableBlock">
+        <div class="searchMenu mb-10" id="wrapMain">
+            <div class="l">
+                <span class="l ml-5">
+                    物料类型：
+                </span>
+                <span class="l ml-5 mr-15" style="width:180px;">
+                    <select class="select" name="brandclass" id="systemType" size="1" v-model="moduleType">
+                        <option value="PC">PC</option>
+                        <option value="MOB">MOB</option>
+                    </select>
+                </span>
+            </div>
+            <div class="r">
+                <span class="l ml-5">
+                    搜索：
+                </span>
+                <span class="l ml-5" style="width:200px;">
+                    <input type="text" class="input-text dsearch size-MINI" />
+                </span>
+            </div>
+        </div>
+        <div class="mt-5">
+            <table class="table table-border table-bordered table-hover table-bg table-sort">
+                <thead>
+                    <tr class="text-l">
+                        <th class="text-c" width="80px;">序号</th>
+                        <th>
+                            物料编号
+                        </th>
+                        <th>
+                            物料描述
+                        </th>
+                        <th>
+                            物料类型（编号）
+                        </th>
+                        <th>物料类型</th>
+                        <th>
+                            计量单位
+                        </th>
+                        <th>
+                            计量单位描述
+                        </th>
+                        <th>历史价格</th>
+                        <th width="80px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-c" width="80px;">序号</td>
+                        <td>
+                            物料编号
+                        </td>
+                        <td>
+                            物料描述
+                        </td>
+                        <td>
+                            物料类型（编号）
+                        </td>
+                        <td>物料类型</td>
+                        <td>
+                            计量单位
+                        </td>
+                        <td>
+                            计量单位描述
+                        </td>
+                        <td>历史价格</td>
+                        <td width="80px;">操作</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="" id="content" style="height:100%; display:none;background:#F3F3F4;">
+        <div class="page-main">
+            <div class="x_average">
+                <div class="average heBtnMenu">
+                    @*<span class="l ml-5">
+                            <a class="btn btn-secondary size-S radius" onclick="" href="javascript:;">编辑</a>
+                        </span>*@
+                    <span class="mr-10">
+                        <a class="btn btn-primary size-S radius" onclick="" href="javascript:;">新增特性</a>
+                    </span>
+                </div>
+            </div>
+            <div class="mt-5">
+                <table class="table table-border table-bordered table-hover table-bg table-sort">
+                    <thead>
+                        <tr class="text-l">
+                            <th>
+                                特性编号
+                            </th>
+                            <th>
+                                特性名称
+                            </th>
+                            <th>
+                                特性值
+                            </th>
+                            <th width="80px;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                sdafsdadfasd12321
+                            </td>
+                            <td>
+                                物料描述
+                            </td>
+                            <td>
+                                1000
+                            </td>
+                            <td width="80px;">操作</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function openWuliao(title, url) {
+        if (title == null || title == '') {
+            title = false;
+        };
+        if (url == null || url == '') {
+            url = "404.html";
+        };
+        w = 700;
+        h = 400;
+        layer.open({
+            type: 1,
+            area: [w + 'px', h + 'px'],
+            offset: 'rb',
+            fix: true, //不固定
+            maxmin: false,
+            moveOut: false,
+            shade: 0,
+            title: title,
+            tipsMore: false,
+            content: $('#content')
+        });
+    }
+</script>
