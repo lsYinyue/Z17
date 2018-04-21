@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary1.Services
+namespace Z17.Core.Enums
 {
-    class BaseService
+    public enum UserType
     {
+        Administrator = 9,
+        Admin = 7,
+        Noraml = 0
     }
 }
