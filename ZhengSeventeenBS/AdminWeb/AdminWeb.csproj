@@ -50,6 +50,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\Z17.Core\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -518,6 +521,10 @@
     <ProjectReference Include="..\Service.Library\Service.Library.csproj">
       <Project>{b93457ed-88e6-4edc-95df-1fbef771dcfe}</Project>
       <Name>Service.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Z17.Core\Z17.Core.csproj">
+      <Project>{f2735220-4888-4235-8c4c-6396c6ad60c7}</Project>
+      <Name>Z17.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
