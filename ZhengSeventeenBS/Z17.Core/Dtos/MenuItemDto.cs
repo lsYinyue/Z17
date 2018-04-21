@@ -47,6 +47,11 @@ namespace Z17.Core.Dtos
             get;
             set;
         }
+        public string Url
+        {
+            get;
+            set;
+        }
         public string QueryString
         {
             get;
@@ -95,6 +100,7 @@ namespace Z17.Core.Dtos
                 Order = rsc.COrder,
                 Path = rsc.CResourcePath,
                 SubPath = rsc.CResourceSubPath,
+                Url = rsc.CUrl,
                 QueryString = rsc.CQueryString,
                 Timestamp = rsc.TimeStamp.GetValueOrDefault()
             };

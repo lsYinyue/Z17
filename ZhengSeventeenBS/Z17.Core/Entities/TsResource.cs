@@ -44,6 +44,12 @@ namespace Z17.Core.Entities
             get;
             set;
         }
+        [Column("C_URL")]
+        public virtual string CUrl
+        {
+            get;
+            set;
+        }
         [Column("C_QUERY_STRING")]
         public virtual string CQueryString
         {

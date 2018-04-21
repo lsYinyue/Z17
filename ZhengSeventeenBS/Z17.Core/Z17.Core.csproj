@@ -75,6 +75,7 @@
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Services\AccessTokenService.cs" />
     <Compile Include="Services\BoneAuthService.cs" />
+    <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\PermissionService.cs" />
     <Compile Include="Services\SequenceService.cs" />
   </ItemGroup>
