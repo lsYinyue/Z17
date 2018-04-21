@@ -491,6 +491,7 @@
     <Content Include="Views\CM3110\CM3110.cshtml" />
     <Content Include="Views\TS1020\TS1020.cshtml" />
     <Content Include="Views\CM3130\CM3130.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

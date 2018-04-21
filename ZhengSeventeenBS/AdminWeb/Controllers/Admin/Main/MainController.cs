@@ -19,7 +19,11 @@ namespace AdminWeb.Controllers.Admin.Main
             ViewData["comppanyName"] = GetUserCompany();
             return View();
         }
-
+        public ActionResult Index()
+        {
+            
+            return View();
+        }
         /// <summary>
         /// 获取登录用户的公司
         /// </summary>

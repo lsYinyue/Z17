@@ -22,10 +22,11 @@
         html, body {
             height: 100%;
         }
-
         .loginBox1 {
-            width: 50%;
-            margin-left: 25%;
+            margin-left: 35%;
+            padding:30px 0 40px;
+            width: 30%;
+            background: #fff;
         }
     </style>
 </head>
@@ -34,14 +35,14 @@
     <div class="loginBox1">
         <div class="form form-horizontal">
             <div class="row cl">
-                <label class="form-label col-xs-3">用户名</label>
-                <div class="formControls col-xs-8">
+                <label class="form-label col-xs-3  pt-5">用户名</label>
+                <div class="formControls col-xs-8 pl-5">
                     <input id="username" type="text" placeholder="账户" class="input-text size-L" />
                 </div>
             </div>
             <div class="row cl">
-                <label class="form-label col-xs-3">密码</label>
-                <div class="formControls col-xs-8">
+                <label class="form-label col-xs-3 pt-5">密码</label>
+                <div class="formControls col-xs-8 pl-5">
                     <input id="password" type="password" placeholder="密码" class="input-text size-L" />
                 </div>
             </div>
@@ -78,6 +79,8 @@
                 }
             }).done(function (ret) {
                 //success body
+                console.log(JSON.stringify(ret));
+                return;
                 if (ret == 1)
                     location.href = "/main/main"
                 else
