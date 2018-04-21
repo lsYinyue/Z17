@@ -9,3 +9,10 @@ F:\GitHub\Z17\ZhengSeventeenBS\Z17.Core\bin\Debug\linq2db.xml
 F:\GitHub\Z17\ZhengSeventeenBS\Z17.Core\obj\Debug\Z17.Core.dll
 F:\GitHub\Z17\ZhengSeventeenBS\Z17.Core\obj\Debug\Z17.Core.pdb
 F:\GitHub\Z17\ZhengSeventeenBS\Z17.Core\bin\Debug\Newtonsoft.Json.dll
+D:\Code\C#\Z17\ZhengSeventeenBS\Z17.Core\bin\Debug\Z17.Core.dll
+D:\Code\C#\Z17\ZhengSeventeenBS\Z17.Core\bin\Debug\Z17.Core.pdb
+D:\Code\C#\Z17\ZhengSeventeenBS\Z17.Core\bin\Debug\Newtonsoft.Json.dll
+D:\Code\C#\Z17\ZhengSeventeenBS\Z17.Core\obj\Debug\Z17.Core.csproj.CoreCompileInputs.cache
+D:\Code\C#\Z17\ZhengSeventeenBS\Z17.Core\obj\Debug\Z17.Core.csproj.CopyComplete
+D:\Code\C#\Z17\ZhengSeventeenBS\Z17.Core\obj\Debug\Z17.Core.dll
+D:\Code\C#\Z17\ZhengSeventeenBS\Z17.Core\obj\Debug\Z17.Core.pdb

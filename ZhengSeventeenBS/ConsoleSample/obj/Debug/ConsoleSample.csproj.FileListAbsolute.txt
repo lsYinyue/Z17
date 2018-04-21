@@ -12,3 +12,14 @@ F:\GitHub\Z17\ZhengSeventeenBS\ConsoleSample\obj\Debug\ConsoleSample.exe
 F:\GitHub\Z17\ZhengSeventeenBS\ConsoleSample\obj\Debug\ConsoleSample.pdb
 F:\GitHub\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\MySql.Data.dll
 F:\GitHub\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\Newtonsoft.Json.dll
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\ConsoleSample.exe.config
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\ConsoleSample.exe
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\ConsoleSample.pdb
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\Z17.Core.dll
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\Newtonsoft.Json.dll
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\bin\Debug\Z17.Core.pdb
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\obj\Debug\ConsoleSample.csprojResolveAssemblyReference.cache
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\obj\Debug\ConsoleSample.csproj.CoreCompileInputs.cache
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\obj\Debug\ConsoleSample.csproj.CopyComplete
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\obj\Debug\ConsoleSample.exe
+D:\Code\C#\Z17\ZhengSeventeenBS\ConsoleSample\obj\Debug\ConsoleSample.pdb

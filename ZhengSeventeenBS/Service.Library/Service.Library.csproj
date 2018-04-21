@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CloudService\CloudService.cs" />
+    <Compile Include="DBService\PermissionService.cs" />
     <Compile Include="MyClasses\ComCloud.cs" />
     <Compile Include="CloudService\LoginCloudService.cs" />
     <Compile Include="CloudService\MainCloudService.cs" />
@@ -76,6 +77,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Z17.Core\Z17.Core.csproj">
+      <Project>{f2735220-4888-4235-8c4c-6396c6ad60c7}</Project>
+      <Name>Z17.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
