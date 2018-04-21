@@ -50,9 +50,6 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\..\..\Demo\BoneNet\bin\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -159,7 +156,6 @@
     <Compile Include="Controllers\Admin\TS1000\TS1030Controller.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -496,7 +492,6 @@
     <Content Include="Views\TS1020\TS1020.cshtml" />
     <Content Include="Views\CM3130\CM3130.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
-    <Content Include="Views\User\UserMenus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -523,10 +518,6 @@
     <ProjectReference Include="..\Service.Library\Service.Library.csproj">
       <Project>{b93457ed-88e6-4edc-95df-1fbef771dcfe}</Project>
       <Name>Service.Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Z17.Core\Z17.Core.csproj">
-      <Project>{F2735220-4888-4235-8C4C-6396C6AD60C7}</Project>
-      <Name>Z17.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
