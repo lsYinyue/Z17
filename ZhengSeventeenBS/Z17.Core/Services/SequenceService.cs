@@ -55,7 +55,7 @@ namespace Z17.Core.Services
             ulong result;
             try
             {
-                using (var db = new Db())
+                using (var db = GetDbContext())
                 {
                     //using (var uow = UnitOfWorkManager.RequiresNew())
                     {

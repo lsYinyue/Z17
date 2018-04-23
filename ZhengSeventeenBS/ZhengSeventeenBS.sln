@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Library", "Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z17.Core", "Z17.Core\Z17.Core.csproj", "{F2735220-4888-4235-8C4C-6396C6AD60C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleSample", "ConsoleSample\ConsoleSample.csproj", "{F688190C-93AC-4F35-905D-F3FAD10D3446}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F2735220-4888-4235-8C4C-6396C6AD60C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2735220-4888-4235-8C4C-6396C6AD60C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2735220-4888-4235-8C4C-6396C6AD60C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F688190C-93AC-4F35-905D-F3FAD10D3446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F688190C-93AC-4F35-905D-F3FAD10D3446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F688190C-93AC-4F35-905D-F3FAD10D3446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F688190C-93AC-4F35-905D-F3FAD10D3446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,7 +22,7 @@ namespace Z17.Core.Services
 		/// </summary> 
 		public virtual List<TsResource> GetUserResource(string userId, RbacResourceType rbacRscType)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var tsUser = db.GetTable<TsUser>()
                     .FirstOrDefault(x => x.Id.Equals(userId));
@@ -51,7 +51,7 @@ namespace Z17.Core.Services
 
         public virtual List<MenuItemDto> GetUserMenuItems(string userId)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var tsUser = db.GetTable<TsUser>()
                     .FirstOrDefault(x => x.Id.Equals(userId));
@@ -83,7 +83,7 @@ namespace Z17.Core.Services
 
         public virtual List<TsResource> GetNotAllowedWidgets(string userId, string rscId)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var source = db.GetTable<TsResource>()
                     .Where(x => x.CPId.Equals(rscId) && x.CType.Equals(4));
@@ -117,7 +117,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual List<TsResource> GetRoleResource(string roleId, params RbacResourceType[] rbacRscTypes)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var ints = rbacRscTypes.Select(x => (int)x).ToArray();
                 var resourceIds = db.GetTable<TsRolePermission>()
@@ -139,7 +139,7 @@ namespace Z17.Core.Services
         /// <returns></returns>
         public virtual List<TsUserRole> GetUserRoles()
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 return db.GetTable<TsUserRole>().ToList();
             }
@@ -150,7 +150,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual List<string> GetUserRoles(string userId)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var result = db.GetTable<TsUserRole>()
                     .Where(x => x.CUserId.Equals(userId))
@@ -165,7 +165,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual List<TsResource> GetAllResouces(params RbacResourceType[] rbacRscTypes)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var ints = rbacRscTypes.Select(x => (int)x).ToArray();
                 var result = db.GetTable<TsResource>()
@@ -178,7 +178,7 @@ namespace Z17.Core.Services
 
         public virtual List<TsUser> QueryUsers(string keywords)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var result = db.GetTable<TsUser>()
                     .Where(x => !x.Id.Equals("system"))
@@ -192,7 +192,7 @@ namespace Z17.Core.Services
 
         public virtual TsUser QueryUserById(string userId)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var result = db.GetTable<TsUser>().FirstOrDefault(x => x.Id.Equals(userId));
                 return result;
@@ -201,7 +201,7 @@ namespace Z17.Core.Services
 
         public virtual void DeleteUser(string userid)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var user = db.GetTable<TsUser>().FirstOrDefault(x => x.Id.Equals(userid));
                 if (user == null)
@@ -215,7 +215,7 @@ namespace Z17.Core.Services
 
         public virtual TsUser InsertOrUpdateUser(TsUser user, List<string> roleids)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 db.InsertOrReplace(user);
 
@@ -224,7 +224,7 @@ namespace Z17.Core.Services
 
                 if (roleids != null && roleids.Count > 0)
                 {
-                    db.Connection.BulkCopy(roleids.Select(x => new TsUserRole
+                    db.BulkCopy(roleids.Select(x => new TsUserRole
                     {
                         Id = SequenceService.Proxy.GenerateLocalId(),
                         CUserId = user.Id,
@@ -237,7 +237,7 @@ namespace Z17.Core.Services
 
         public virtual List<TsRole> QueryRoles(string keywords)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var result = db.GetTable<TsRole>()
                 //.WhereIf(AppContext.Current.User.UserType == UserType.Admin, x => x.CMaster.Equals(AppContext.Current.User.UserID))
@@ -250,7 +250,7 @@ namespace Z17.Core.Services
 
         public virtual void CheckBeforeRemoveRole(string roleId)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var num = db.GetTable<TsUserRole>().Where(x => x.CRoleId.Equals(roleId)).Count();
                 if (num > 0)
@@ -267,7 +267,7 @@ namespace Z17.Core.Services
 
         public virtual List<TsResource> QueryFunctionByModule(string moduleId)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var result = db.GetTable<TsResource>()
                 .Where(x => x.CPId.Equals(moduleId) && x.CType.Equals(4))
@@ -278,7 +278,7 @@ namespace Z17.Core.Services
 
         public virtual void SaveChangesForRoleModule(string rolid, List<TsResource> selectResource)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var role = db.GetTable<TsRole>().FirstOrDefault(x => x.Id.Equals(rolid));
                 if (role == null)
@@ -297,7 +297,7 @@ namespace Z17.Core.Services
                     CResourceId = x.Id,
                     CResourceType = x.CType
                 }).ToList();
-                db.Connection.BulkCopy(lst);
+                db.BulkCopy(lst);
             }
         }
 
@@ -316,7 +316,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual List<string> QueryUserKeyValues(string userId, string kvParentCode)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var tsKeyValue = db.GetTable<TsKeyValue>()
                 .FirstOrDefault(x => x.CCode.Equals(kvParentCode) && x.CEnable.IsTrue() && string.IsNullOrEmpty(x.CPCode));
@@ -334,7 +334,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual List<string> QueryUserRestrictData(string userId, string dataKey)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var resource = db.GetTable<TsResource>()
                 .FirstOrDefault(x => x.CType.Equals(16) && x.CCode.Equals(dataKey));
@@ -389,7 +389,7 @@ namespace Z17.Core.Services
                 return new List<TreeDto>();
             }
 
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 if (item.CCode.StartsWith("KV_"))
                 {
@@ -415,7 +415,7 @@ namespace Z17.Core.Services
                            .Where(x => x.CRoleId.Equals(roleId) && x.CResourceId.StartsWith(item.Id) && x.CResourceType.Equals(16))
                            .ToList();
                     string sql = string.Format("select {0} Id,{1} Name ", item.CResourcePath, item.CResourceSubPath) + string.Format("from {0} order by {1}", item.CCode, item.CResourcePath);
-                    var result = db.Connection.Query<TreeDto>(sql)
+                    var result = db.Query<TreeDto>(sql)
                           .Select(x => new TreeDto
                           {
                               Id = x.Id,
@@ -441,7 +441,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual List<string> QueryRestrictColumn(List<string> roleids, string entityTypeFullName)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var lst = db.GetTable<TsRolePermission>()
                 .Where(x => roleids.Contains(x.CRoleId) && x.CResourceId.StartsWith(entityTypeFullName) && x.CResourceType.Equals(32))
@@ -456,7 +456,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual void SaveRoleRestrictDataItem(string roleId, string dataId, string parentId, bool checkedState, RbacResourceType rtype = RbacResourceType.DataItem)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var resourceId = string.Format("{0}##{1}", parentId, dataId);
 

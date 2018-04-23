@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LinqToDB;
 using LinqToDB.Data;
-using Z17.Core.Entities;
 using Z17.Core.Helpers;
 
 namespace Z17.Core.Base
 {
-    public class Db : DataContext
+    internal class Db : DataContext
     {
         private string _connString;
         public Db(string connString = "default") : base(connString)
         {
-
+            _connString = connString;
         }
 
         private DataConnection _connection;

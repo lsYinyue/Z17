@@ -29,21 +29,18 @@ namespace Z17.Core.Services
         //[AllowAnonymous]
         public virtual BoneIdentity CheckOnlyOneClientLogined(string userid)
         {
-            using (var db = new Db())
-            {
-                var result = db.GetTable<TsUser>()
-                    .Where(x => x.Id.Equals(userid) && !string.IsNullOrEmpty(x.CLoginedIp) && x.COnlyOneClient.IsTrue())
-                    .Select(x => new BoneIdentity
-                    {
-                        Session = x.CSessionId,
-                        LoginIp = x.CLoginedIp,
-                        LoginMachine = x.CLoginedMachine,
-                        LoginTime = x.DLoginedTime,
-                        SessionUpdateTime = x.DSessionUpdateTime
-                    })
-                    .FirstOrDefault();
-                return result;
-            }
+            var result = GetDbContext().GetTable<TsUser>()
+                .Where(x => x.Id.Equals(userid) && !string.IsNullOrEmpty(x.CLoginedIp) && x.COnlyOneClient.IsTrue())
+                .Select(x => new BoneIdentity
+                {
+                    Session = x.CSessionId,
+                    LoginIp = x.CLoginedIp,
+                    LoginMachine = x.CLoginedMachine,
+                    LoginTime = x.DLoginedTime,
+                    SessionUpdateTime = x.DSessionUpdateTime
+                })
+                .FirstOrDefault();
+            return result;
         }
 
         /// <summary>
@@ -52,7 +49,7 @@ namespace Z17.Core.Services
         //[AllowAnonymous]
         public virtual string Token(string userid, string password)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var tsUser = db.GetTable<TsUser>().FirstOrDefault(x => x.Id.Equals(userid));
                 if (tsUser == null)
@@ -102,7 +99,7 @@ namespace Z17.Core.Services
         //[AllowAnonymous]
         public virtual TsUser GetUserFromToken(string token)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var result = db.GetTable<TsUser>()
                     .FirstOrDefault(x => x.CSessionId.Equals(token));
@@ -112,7 +109,7 @@ namespace Z17.Core.Services
 
         private void UpdateWhileLogin(string userid, string token)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 db.GetTable<TsUser>()
                 .Where(x => x.Id.Equals(userid))
@@ -127,7 +124,7 @@ namespace Z17.Core.Services
         //[AllowAnonymous, ProhibitExternalAccess]
         public virtual void UpdateUserSession(string userid)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 db.GetTable<TsUser>()
                 .Where(x => x.Id.Equals(userid))
@@ -140,7 +137,7 @@ namespace Z17.Core.Services
         public virtual void ClearNotValidateSession()
         {
             DateTime? value = null;
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 db.GetTable<TsUser>()
                 .Where(x => x.DSessionUpdateTime < DateTime.Now.AddHours(-8) || string.IsNullOrEmpty(x.CSessionId))
@@ -155,7 +152,7 @@ namespace Z17.Core.Services
 
         public virtual void ClearUserLoginInfo(string userid)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 db.GetTable<TsUser>()
                 .Where(x => x.Id.Equals(userid))
@@ -178,7 +175,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual void ModifyPassword(string userid, string oldpwd, string newpwd)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var tsUser = db.GetTable<TsUser>()
                 .FirstOrDefault(x => x.Id.Equals(userid));
@@ -198,7 +195,7 @@ namespace Z17.Core.Services
         /// </summary> 
         public virtual void ResetPassword(string userid)
         {
-            using (var db = new Db())
+            using (var db = GetDbContext())
             {
                 var tsUser = db.GetTable<TsUser>()
                 .FirstOrDefault(x => x.Id.Equals(userid));
