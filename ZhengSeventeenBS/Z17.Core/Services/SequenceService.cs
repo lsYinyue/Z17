@@ -8,7 +8,7 @@ using Z17.Core.Helpers;
 
 namespace Z17.Core.Services
 {
-    public class SequenceService : BaseService<SequenceService>
+    public class SequenceService : BoneService<SequenceService>//, ISequnceService
     {
         /// <summary>
 		/// 生成主键(10位):yyMMddHH+2位本地流水(适用于一小时产生100条数据的频率)

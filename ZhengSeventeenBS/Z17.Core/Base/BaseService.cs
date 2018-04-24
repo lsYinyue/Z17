@@ -7,7 +7,7 @@ using Z17.Core.Helpers;
 
 namespace Z17.Core.Base
 {
-    public abstract class BaseService
+    public abstract class BoneService
     {
         private static DataConnection _connection;
 
@@ -33,12 +33,12 @@ namespace Z17.Core.Base
     /// 需要添加针对非虚方法的处理
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class BaseService<T> : BaseService where T : BaseService, new()
+    public abstract class BoneService<T> : BoneService where T : BoneService, new()
     {
         private static readonly ILogger _logger = Logging.LoggerManager.CreateLogger<T>();
         private static readonly ProxyGenerator _factory = new ProxyGenerator();
 
-        public BaseService()
+        public BoneService()
         {
 
         }
@@ -50,10 +50,10 @@ namespace Z17.Core.Base
         {
             get
             {
-                _logger.Info("BaseService " + typeof(T).FullName);
+                _logger.Info("BoneService " + typeof(T).FullName);
                 return (T)_factory.CreateClassProxy(typeof(T), new IInterceptor[]
                 {
-                    new BaseServiceInterceptor(Activator.CreateInstance<T>())
+                    new BoneServiceInterceptor(Activator.CreateInstance<T>())
                 });
             }
         }
@@ -67,12 +67,12 @@ namespace Z17.Core.Base
         }
     }
 
-    public class BaseServiceInterceptor : IInterceptor
+    public class BoneServiceInterceptor : IInterceptor
     {
-        private BaseService _service;
-        private static readonly ILogger _logger = Logging.LoggerManager.CreateLogger<BaseServiceInterceptor>();
+        private BoneService _service;
+        private static readonly ILogger _logger = Logging.LoggerManager.CreateLogger<BoneServiceInterceptor>();
 
-        public BaseServiceInterceptor(BaseService service)
+        public BoneServiceInterceptor(BoneService service)
         {
             _logger.Info("service进入拦截器");
             _service = service;

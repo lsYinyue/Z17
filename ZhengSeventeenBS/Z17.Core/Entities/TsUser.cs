@@ -10,7 +10,7 @@ namespace Z17.Core.Entities
     /// </summary>
     [Table("TS_USER")]
     [Serializable]
-    public class TsUser : BaseEntity<TsUser, string>
+    public class TsUser : BoneEntity<TsUser, string>
     {
         /// <summary>
         /// 用户名称

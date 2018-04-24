@@ -12,7 +12,7 @@ namespace Z17.Core.Helpers
     /// <summary>
     /// 处理网络连接等问题帮助类
     /// </summary>
-    public class NetWorkHelper : BaseHelper<NetWorkHelper>
+    public class NetWorkHelper : BoneHelper<NetWorkHelper>
     {
         private readonly ManualResetEvent TimeoutObject = new ManualResetEvent(false);
         /// <summary>

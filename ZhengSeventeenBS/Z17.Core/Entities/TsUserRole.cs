@@ -6,7 +6,7 @@ namespace Z17.Core.Entities
 {
     [Table("TS_USER_ROLE")]
     [Serializable]
-    public class TsUserRole : BaseEntity<TsUserRole, string>
+    public class TsUserRole : BoneEntity<TsUserRole, string>
     {
         [Column("C_USERID")]
         public virtual string CUserId

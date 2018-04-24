@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
+using Castle.Core.Logging;
 
 namespace Z17.Core.IOC
 {
@@ -9,7 +10,7 @@ namespace Z17.Core.IOC
     /// </summary>
     public class IocManager
     {
-        private static Logging.LoggerManager _log = Logging.LoggerManager.CreateLogger<IocManager>();
+        private static ILogger _log = Logging.LoggerManager.CreateLogger<IocManager>();
 
         private static IocManager _ioc;
         public static IocManager Instance

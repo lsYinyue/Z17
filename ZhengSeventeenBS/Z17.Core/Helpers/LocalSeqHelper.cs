@@ -9,7 +9,7 @@ using Z17.Core.Base;
 
 namespace Z17.Core.Helpers
 {
-    public class LocalSeqHelper : BaseHelper<LocalSeqHelper>
+    public class LocalSeqHelper : BoneHelper<LocalSeqHelper>
     {
         private ulong _seq = 1uL;
         private ulong _record_seq = 0uL;

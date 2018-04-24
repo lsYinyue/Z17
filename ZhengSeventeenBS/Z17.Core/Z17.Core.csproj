@@ -71,6 +71,9 @@
     <Compile Include="Base\BaseHelper.cs" />
     <Compile Include="Base\Db.cs" />
     <Compile Include="Base\BaseEntity.cs" />
+    <Compile Include="Caching\CacheManager.cs" />
+    <Compile Include="Caching\ICache.cs" />
+    <Compile Include="Caching\MemoryCache.cs" />
     <Compile Include="Dtos\MenuItemDto.cs" />
     <Compile Include="Dtos\TreeDto.cs" />
     <Compile Include="Entities\TsKeyValue.cs" />
@@ -81,12 +84,14 @@
     <Compile Include="Entities\TsUserRole.cs" />
     <Compile Include="Enums\RbacResourceType.cs" />
     <Compile Include="Enums\UserType.cs" />
+    <Compile Include="Enums\YN.cs" />
     <Compile Include="Extensions\QueryableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\LocalSeqHelper.cs" />
     <Compile Include="Helpers\NetWorkHelper.cs" />
     <Compile Include="Helpers\SimpleCipherHelper.cs" />
+    <Compile Include="Interfaces\ISequnceService.cs" />
     <Compile Include="IOC\IocManager.cs" />
     <Compile Include="Logging\LoggerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,15 +108,13 @@
     <Compile Include="Services\ModuleService.cs" />
     <Compile Include="Services\PermissionService.cs" />
     <Compile Include="Services\SequenceService.cs" />
+    <Compile Include="Services\UserRoleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="configs\nlog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Caching\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -15,7 +15,7 @@ namespace Z17.Core.Services
     /// 系统授权服务
     /// </summary>
     [Serializable]
-    public class PermissionService : BaseService<PermissionService>
+    public class PermissionService : BoneService<PermissionService>
     {
         /// <summary>
 		/// 获取用户资源

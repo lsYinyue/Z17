@@ -11,7 +11,7 @@ namespace Z17.Core.Entities
     /// </summary> 
     [Description("TsKeyValue"), Table("TS_KEY_VALUE")]
     [Serializable]
-    public class TsKeyValue : BaseEntity<TsKeyValue, string>
+    public class TsKeyValue : BoneEntity<TsKeyValue, string>
     {
         /// <summary>
         /// 主键

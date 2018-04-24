@@ -6,7 +6,7 @@ namespace Z17.Core.Entities
 {
     [Table("TS_ROLE_PERMISSION")]
     [Serializable]
-    public class TsRolePermission : BaseEntity<TsRolePermission, string>
+    public class TsRolePermission : BoneEntity<TsRolePermission, string>
     {
         [Column("C_ROLEID")]
         public virtual string CRoleId

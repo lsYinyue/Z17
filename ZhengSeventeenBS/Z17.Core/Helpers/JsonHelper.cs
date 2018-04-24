@@ -11,7 +11,7 @@ namespace Z17.Core.Helpers
     /// <summary>
     /// Json辅助器
     /// </summary>
-    public class JsonHelper : BaseHelper<JsonHelper>
+    public class JsonHelper : BoneHelper<JsonHelper>
     {
         /// <summary>
         /// 将类转换为json字符串

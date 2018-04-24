@@ -10,7 +10,7 @@ using Z17.Core.Entities;
 
 namespace Z17.Core.Services
 {
-    public class ModuleService : BaseService<ModuleService>
+    public class ModuleService : BoneService<ModuleService>
     {
         /// <summary>
         /// 根据ID获取模块信息

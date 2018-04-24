@@ -9,7 +9,7 @@ namespace Z17.Core.Helpers
     /// <summary>
     /// 常见的加密解密散列等
     /// </summary>
-    public class SimpleCipherHelper : BaseHelper<SimpleCipherHelper>
+    public class SimpleCipherHelper : BoneHelper<SimpleCipherHelper>
     {
         private string prefix = "encrypt:";
         public string SHA512Encrypt(string strSource)

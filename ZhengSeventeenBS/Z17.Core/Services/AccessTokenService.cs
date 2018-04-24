@@ -7,7 +7,7 @@ using Z17.Core.Runtime;
 
 namespace Z17.Core.Services
 {
-    public class AccessTokenService : BaseService<AccessTokenService> //IAccessTokenService
+    public class AccessTokenService : BoneService<AccessTokenService> //IAccessTokenService
     {
         /// <summary>
         /// 从token中获取用户

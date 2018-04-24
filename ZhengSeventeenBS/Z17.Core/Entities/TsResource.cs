@@ -7,7 +7,7 @@ namespace Z17.Core.Entities
 {
     [Table("TS_RESOURCE")]
     [Serializable]
-    public class TsResource : BaseEntity<TsResource, string>
+    public class TsResource : BoneEntity<TsResource, string>
     {
         /// <summary>
         /// 模块对应的类型

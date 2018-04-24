@@ -11,7 +11,7 @@ namespace Z17.Core.Entities
     /// </summary>
     [Description("系统角色表"), Table("TS_ROLE")]
     [Serializable]
-    public class TsRole : BaseEntity<TsRole, string>
+    public class TsRole : BoneEntity<TsRole, string>
     {
         /// <summary>
         /// 角色名称

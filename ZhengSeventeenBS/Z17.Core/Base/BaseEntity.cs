@@ -8,7 +8,7 @@ using LinqToDB.Mapping;
 
 namespace Z17.Core.Base
 {
-    public abstract class BaseEntity
+    public abstract class BoneEntity
     {
         /// <summary>
         /// 选择
@@ -17,7 +17,7 @@ namespace Z17.Core.Base
         public bool Selected { get; set; }
     }
 
-    public abstract class BaseEntity<TEntity, TPK> : BaseEntity where TEntity : BaseEntity where TPK : class
+    public abstract class BoneEntity<TEntity, TPK> : BoneEntity where TEntity : BoneEntity where TPK : class
     {
         /// <summary>
         /// 主键

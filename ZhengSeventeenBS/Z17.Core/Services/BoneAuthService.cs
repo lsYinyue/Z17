@@ -12,7 +12,7 @@ namespace Z17.Core.Services
     /// <summary>
 	/// 系统登录认证服务
 	/// </summary> 
-    public class BoneAuthService : BaseService<BoneAuthService>
+    public class BoneAuthService : BoneService<BoneAuthService>
     {
         /// <summary>
 		/// 系统默认密码
