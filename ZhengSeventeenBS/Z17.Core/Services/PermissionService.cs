@@ -124,7 +124,6 @@ namespace Z17.Core.Services
                     .Where(x => x.CRoleId.Equals(roleId) && ints.Contains(x.CResourceType))
                     .Select(x => x.CResourceId)
                     .ToList();
-                //var queryable = GetDbContext().GetTable<TsResource>().Where(x => ints.Contains(x.CType));
                 var result = db.GetTable<TsResource>()
                     .Where(x => resourceIds.Contains(x.Id))
                     .OrderBy(x => x.COrder)
@@ -182,7 +181,7 @@ namespace Z17.Core.Services
             {
                 var result = db.GetTable<TsUser>()
                     .Where(x => !x.Id.Equals("system"))
-                    //.WhereIf(AppContext.Current.User.UserType != UserType.Administrator, x => x.CMaster.Equals(AppContext.Current.User.UserID))
+                    .WhereIf(Runtime.AppContext.Current.User.UserType != UserType.Administrator, x => x.CMaster.Equals(Runtime.AppContext.Current.User.UserID))
                     .WhereIf(!string.IsNullOrEmpty(keywords), x => x.Id.Contains(keywords) || x.CUserName.Contains(keywords))
                     .OrderBy(x => x.Id)
                     .ToList();
@@ -240,7 +239,7 @@ namespace Z17.Core.Services
             using (var db = GetDbContext())
             {
                 var result = db.GetTable<TsRole>()
-                //.WhereIf(AppContext.Current.User.UserType == UserType.Admin, x => x.CMaster.Equals(AppContext.Current.User.UserID))
+                .WhereIf(Runtime.AppContext.Current.User.UserType == UserType.Admin, x => x.CMaster.Equals(Runtime.AppContext.Current.User.UserID))
                 .WhereIf(!string.IsNullOrEmpty(keywords), x => x.CRoleName.Contains(keywords) || x.CDescription.Contains(keywords))
                 .OrderBy(x => x.CRoleName)
                 .ToList();

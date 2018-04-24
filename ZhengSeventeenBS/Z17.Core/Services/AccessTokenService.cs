@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Remoting.Messaging;
 using Z17.Core.Base;
-using Z17.Core.Dtos;
+using Z17.Core.Enums;
+using Z17.Core.Extensions;
+using Z17.Core.Runtime;
 
 namespace Z17.Core.Services
 {
@@ -21,21 +20,36 @@ namespace Z17.Core.Services
             }
 
             token = Guid.Parse(token).ToString("N").ToUpper();
-            //string key = "AccessToken:" + token;
-            //int timeoutOfLogin = AppContext.Current.Settings().TimeoutOfLogin;
-            //var boneIdentity = CacheManager.MemoryCache.Get(key, null, 7200) as BoneIdentity;
+            string key = "AccessToken:" + token;
+            int timeoutOfLogin = 480;// AppContext.Current.Settings().TimeoutOfLogin;
+            BoneIdentity boneIdentity = null;
+            //boneIdentity = CacheManager.MemoryCache.Get(key, null, 7200) as BoneIdentity;
             //if (boneIdentity == null)
-            //{
-            //    var userFromToken = BoneAuthService.Proxy.GetUserFromToken(token);
-            //    if (userFromToken == null)
-            //    {
-            //        throw new Exception(string.Format("登陆信息不正确，请重新登陆！可能是以下原因：\n1、非法或者伪造的登陆信息\n2、登陆信息已经过期（{0}分钟）\n3、当前登陆信息已经在其他机器登陆", timeoutOfLogin));
-            //    }
-            //    boneIdentity = userFromToken.AsIdentity();
-            //    boneIdentity.SessionUpdateTime = new DateTime?(DateTime.Now);
-            //    BoneAuthService.Proxy.UpdateUserSession(boneIdentity.UserID);
-            //    //CacheManager.GetCache().Set(key, boneIdentity, 300);
-            //}
+            {
+                var userFromToken = BoneAuthService.Proxy.GetUserFromToken(token);
+                if (userFromToken == null)
+                {
+                    throw new Exception(string.Format("登陆信息不正确，请重新登陆！可能是以下原因：\n1、非法或者伪造的登陆信息\n2、登陆信息已经过期（{0}分钟）\n3、当前登陆信息已经在其他机器登陆", timeoutOfLogin));
+                }
+                boneIdentity = new BoneIdentity
+                {
+                    UserID = userFromToken.Id,
+                    UserName = userFromToken.CUserName,
+                    UserType = (UserType)userFromToken.CUserType,
+                    Password = userFromToken.CPassword,
+                    Department = userFromToken.CDepartment,
+                    DepartmentDesc = userFromToken.CDepartment,
+                    Session = userFromToken.CSessionId,
+                    OnlyOneClient = userFromToken.COnlyOneClient.IsTrue(),
+                    LoginIp = userFromToken.CLoginedIp,
+                    LoginMachine = userFromToken.CLoginedMachine,
+                    SessionUpdateTime = userFromToken.DSessionUpdateTime,
+                    LoginTime = userFromToken.DLoginedTime
+                };
+                boneIdentity.SessionUpdateTime = new DateTime?(DateTime.Now);
+                BoneAuthService.Proxy.UpdateUserSession(boneIdentity.UserID);
+                //CacheManager.GetCache().Set(key, boneIdentity, 300);
+            }
 
             //if (boneIdentity.OnlyOneClient)
             //{
@@ -46,9 +60,8 @@ namespace Z17.Core.Services
             //        throw new AuthenticationException("该用户已经在其他地方进行独占式登陆，请与对方协商后重新登陆！");
             //    }
             //}
-            //return boneIdentity;
 
-            return new BoneIdentity();
+            return boneIdentity;
         }
 
         /// <summary>
@@ -56,14 +69,8 @@ namespace Z17.Core.Services
         /// </summary>
         public void Login(string userid, string password)
         {
-            //AppContext.Current.Token = BoneAuthService.Proxy.Token(userid, password);
-            //AppContext.Current.User = GetUserFromAccessToken(AppContext.Current.Token);
-            //BoneAuthService.Proxy.ClearNotValidateSession();
-
-            var token = BoneAuthService.Proxy.Token(userid, password);
-            Console.WriteLine("token = " + token);
-
-            var user = GetUserFromAccessToken(token);
+            Runtime.AppContext.Current.Token = BoneAuthService.Proxy.Token(userid, password);
+            Runtime.AppContext.Current.User = GetUserFromAccessToken(Runtime.AppContext.Current.Token);
             BoneAuthService.Proxy.ClearNotValidateSession();
         }
 
@@ -72,17 +79,17 @@ namespace Z17.Core.Services
         /// </summary>  
         public void Logout()
         {
-            //if (AppContext.Current.User != null)
-            //{
-            //    try
-            //    {
-            //        BoneAuthService.Proxy.ClearUserLoginInfo(AppContext.Current.User.UserID);
-            //    }
-            //    catch
-            //    {
-            //    }
-            //}
-            //CallContext.HostContext = null;
+            if (Runtime.AppContext.Current.User != null)
+            {
+                try
+                {
+                    BoneAuthService.Proxy.ClearUserLoginInfo(Runtime.AppContext.Current.User.UserID);
+                }
+                catch
+                {
+                }
+            }
+            CallContext.HostContext = null;
         }
     }
 }

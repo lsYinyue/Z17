@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Z17.Core.Enums;
 
-namespace Z17.Core.Dtos
+namespace Z17.Core.Runtime
 {
-    public class BoneIdentity //: IBoneIdentity, IIdentity, ILoginedInfo
+    public class BoneIdentity : IBoneIdentity, IIdentity, ILoginedInfo
     {
         public string UserID { get; set; }
 

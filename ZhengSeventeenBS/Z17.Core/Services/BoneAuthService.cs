@@ -2,10 +2,10 @@
 using System.Linq;
 using LinqToDB;
 using Z17.Core.Base;
-using Z17.Core.Dtos;
 using Z17.Core.Entities;
 using Z17.Core.Extensions;
 using Z17.Core.Helpers;
+using Z17.Core.Runtime;
 
 namespace Z17.Core.Services
 {
@@ -68,7 +68,7 @@ namespace Z17.Core.Services
                     throw new Exception("用户已禁用，请联系管理员！");
                 }
 
-                bool flag5 = (string.IsNullOrEmpty(tsUser.CSessionId) | tsUser.COnlyOneClient.IsTrue()) /*|| tsUser.IsSessionTimeout(AppContext.Current.Settings().TimeoutOfLogin)*/;
+                bool flag5 = (string.IsNullOrEmpty(tsUser.CSessionId) | tsUser.COnlyOneClient.IsTrue()) /*|| tsUser.IsSessionTimeout(Runtime.AppContext.Current.Settings().TimeoutOfLogin)*/;
                 if (flag5)
                 {
                     //CacheManager.GetCache().Remove("AccessToken:" + tsUser.CSessionId);
@@ -77,11 +77,11 @@ namespace Z17.Core.Services
 
                 tsUser.DLoginedTime = DateTime.Now;
                 tsUser.DSessionUpdateTime = DateTime.Now;
-                //tsUser.CLoginedIp = AppContext.Current.Request.UserClient.IpAddress;
-                //tsUser.CLoginedMachine = AppContext.Current.Request.UserClient.HostName;
-                //Log.Trace("登陆后开始更新用户登陆信息：" + tsUser.Id);
+                tsUser.CLoginedIp = Runtime.AppContext.Current.Request.UserClient.IpAddress;
+                tsUser.CLoginedMachine = Runtime.AppContext.Current.Request.UserClient.HostName;
+                Log.Info("登陆后开始更新用户登陆信息：" + tsUser.Id);
                 UpdateWhileLogin(tsUser.Id, tsUser.CSessionId);
-                string key = "AccessToken:" + tsUser.CSessionId;
+                //string key = "AccessToken:" + tsUser.CSessionId;
                 //CacheManager.GetCache().Set(key, tsUser.AsIdentity(), 300);
 
                 //if (base.Eventbus != null)
@@ -113,8 +113,8 @@ namespace Z17.Core.Services
             {
                 db.GetTable<TsUser>()
                 .Where(x => x.Id.Equals(userid))
-                //.Set(x => x.CLoginedIp, AppContext.Current.Request.UserClient.IpAddress)
-                //.Set(x => x.CLoginedMachine, AppContext.Current.Request.UserClient.HostName)
+                .Set(x => x.CLoginedIp, Runtime.AppContext.Current.Request.UserClient.IpAddress)
+                .Set(x => x.CLoginedMachine, Runtime.AppContext.Current.Request.UserClient.HostName)
                 .Set(x => x.DSessionUpdateTime, DateTime.Now)
                 .Set(x => x.CSessionId, token)
                 .Update();
@@ -165,10 +165,10 @@ namespace Z17.Core.Services
         /// <summary>
         /// 获取当前用户信息
         /// </summary> 
-        //public virtual BoneIdentity GetUserInfo()
-        //{
-        //    return AppContext.Current.User as BoneIdentity;
-        //}
+        public virtual BoneIdentity GetUserInfo()
+        {
+            return Runtime.AppContext.Current.User as BoneIdentity;
+        }
 
         /// <summary>
         /// 修改密码
