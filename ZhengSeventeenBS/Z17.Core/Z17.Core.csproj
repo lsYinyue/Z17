@@ -91,13 +91,16 @@
     <Compile Include="Enums\YN.cs" />
     <Compile Include="Extensions\CustomerViewEngine.cs" />
     <Compile Include="Extensions\HttpExtension.cs" />
+    <Compile Include="Extensions\JsonResult.cs" />
     <Compile Include="Extensions\QueryableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\XmlResult.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\LocalSeqHelper.cs" />
     <Compile Include="Helpers\NetWorkHelper.cs" />
     <Compile Include="Helpers\SimpleCipherHelper.cs" />
     <Compile Include="Interfaces\ISequnceService.cs" />
+    <Compile Include="IOC\AufacControllerFactory.cs" />
     <Compile Include="IOC\IocManager.cs" />
     <Compile Include="Logging\LoggerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

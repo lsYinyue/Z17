@@ -32,7 +32,7 @@ namespace Z17.Core.IOC
         }
 
         private ContainerBuilder Builder { get; set; }
-        private IContainer Container { get; set; }
+        public IContainer Container { get; private set; }
 
         public IocManager()
         {
