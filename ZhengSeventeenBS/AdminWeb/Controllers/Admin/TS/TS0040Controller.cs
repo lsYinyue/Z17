@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AdminWeb.Controllers.Admin.CM3000
+namespace AdminWeb.Controllers.Admin.TS
 {
-    public class CM3120Controller : Controller
+    public class TS0040Controller : Controller
     {
-        // GET: CM3120
-        public ActionResult CM3120()
+        // GET: TS0040
+        public ActionResult TS0040()
         {
             return View();
         }

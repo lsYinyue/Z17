@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "CM3211";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+<div class="page-container" id="wrapMain">
+    <div class="form form-horizontal">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">上层库区：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <select class="select pt-5 pb-5" id="moduleType">
+                    <option value="PC">PC</option>
+                    <option value="MOB">MOB</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">库区名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="请输入库区名称" v-model="module.name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">库区编号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" placeholder="请输入库区编号" class="input-text" v-model="module.name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">管理员：</label>
+            <div class="formControls col-xs-8 col-sm-9 x_average">
+                <input type="text" placeholder="请输入管理员姓名" v-model="module.pageEnNo" class="input-text average" />
+                <input v-model="module.pageNo"  placeholder="请输入管理员联系电话" class="input-text average ml-15" />
+            </div>
+        </div>
+        <div class="row cl x_average">
+            <label class="form-label col-xs-4 col-sm-2">库区描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="abstract" class="textarea" placeholder="请输入库区描述" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button onClick="" class="btn btn-primary radius"> 提交</button>
+                <button onClick="layer_close()" class="btn btn-default radius"> 取消</button>
+            </div>
+        </div>
+    </div>
+</div>

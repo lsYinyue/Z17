@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "TS1020";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" type="text/css" href="../../Content/treetable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../Content/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../Content/iconfont/iconfont.css" />
+    <title>模块管理</title>
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="../../Content/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../Content/treetable/jquery.treetable.test.js"></script>
+    <script type="text/javascript" src="../../Content/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="../../Content/h-ui.admin/js/H-ui.admin.js"></script>
+    <script type="text/javascript" src="../../Scripts/vue.js"></script>
+    <script type="text/javascript" src="../../Scripts/common.js"></script>
+</head>
+<body>
+    <div class="page-main">
+        <div class="x_average">
+            <div class="average heBtnMenu">
+                <span class="r ml-10">
+                    <a class="btn btn-success radius size-S" style="line-height:1.6em;" href="javascript:location.replace(location.href);">刷新</a>
+                </span>
+                <span class="r ml-10">
+                    <a class="btn btn-primary size-S radius" onclick="system_category_add('添加模块','../TS0041/TS0041')" href="javascript:;">新增模块</a>
+                </span>
+            </div>
+        </div>
+        <div class="mt-5" id="wrapMain">
+            <table class="table table-border table-bordered table-hover table-bg table-sort" id="menulist">
+                <thead>
+                    <tr class="text-l">
+                        <th>
+                            模块名称
+                        </th>
+                        <th>
+                            模块编号
+                        </th>
+                        <th>
+                            URL
+                        </th>
+                        <th class="text-c" width="90px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in menuList" :data-tt-id="item.Id" :data-tt-parent-id="item.PId">
+                        <td>
+                            {{item.Name}}
+                        </td>
+                        <td>
+                            {{item.Code}}
+                        </td>
+                        <td>
+                            {{item.Url}}
+                        </td>
+                        <td class="text-c" width="90px;">
+                            <a title="编辑" href="javascript:;" onclick="system_category_add('编辑模块','../TS0041/TS0041')" class="ml-10" style="text-decoration:none"><i class="iconfont sui-icon-bianjishuru"></i></a>
+                            <a title="添加子级" href="javascript:;" class="ml-10" onclick="system_category_add('添加子模块','../TS0041/TS0041')" style="text-decoration:none"><i class="iconfont sui-icon-jia"></i></a>
+                            <a title="删除" href="javascript:;" class="ml-10" onclick="system_category_del()" style="text-decoration:none"><i class="iconfont sui-icon-empty"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //渲染页面
+            $.getJSON("/login/getItems?username=system", function (ret) {
+                var menu = ret;
+                if (menu) {
+                  
+                    $app.menuList = treeArrSort(ret, "Id", "PId");
+                    setTimeout(function () { $("#menulist").treetable({ expandable: true }); }, 200);
+                }
+            });
+        });
+        var $app = new Vue({
+            el: '#wrapMain', //作用域
+            data: {
+                menuList: []
+            }
+        });
+        /*系统-栏目-添加*/
+        function system_category_add(title, url) {
+            layer_show(title, url);
+        }
+        /*系统-栏目-编辑*/
+        function system_category_edit(title, pageUrl, moduleId) {
+            var url = pageUrl + "?moduleId=" + moduleId;
+            layer_show(title, url);
+        }
+        /*系统-栏目-删除*/
+        function system_category_del(ModuleId) {
+            var layerConIndex = layer.confirm('确认要删除吗？', function (index) {
+                layer.close(layerConIndex);
+                var layerIndex = layer.load(3, { time: 15 * 1000 });
+                layer.close(layerIndex);
+                layer.msg('操作失败，请重试！', { icon: 5, time: 1500 });
+                return;
+                $.ajax({
+                    "url": "/TS1010/DelModule",
+                    "type": "POST",
+                    "dataType": "json",
+                    "data": {
+                        "ModuleId": ModuleId
+                    }
+                }).done(function (ret) {
+                    layer.close(layerIndex);
+                    //success body
+                    if (1 == ret.code) {
+                        layer.msg("删除成功", { icon: 1, time: 1500 });
+                    } else {
+                        layer.msg('操作失败，请重试！', { icon: 5, time: 1500 });
+                    }
+                }).fail(function (header, status, errorThrown) {
+                    //fail body
+                    layer.close(layerIndex);
+                    layer.msg('操作失败，请重试！', { icon: 5, time: 1500 });
+                })
+            });
+        }
+    </script>
+</body>
+</html>
+

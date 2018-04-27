@@ -46,3 +46,30 @@ var dataTablesLanguage =
             "sLast": "末页"
         }
     }
+//树类数组排序
+function treeArrSort(nodeArr, id, pid) {
+    var treeArr = [];
+    var node = toTree(nodeArr, id, pid);
+    for (var i = 0; i < node.length; i++) { treeArr = traverseTree(node[i], treeArr) };
+    return treeArr;
+}
+function traverseTree(node, treeArr) {
+    if (!node) {
+        return treeArr;
+    }
+    var nodeChild = node.child;
+    treeArr = traverseNode(node, treeArr);
+    if (nodeChild && nodeChild.length > 0) {
+        var i = 0;
+        for (i = 0; i < nodeChild.length; i++) {
+            treeArr = this.traverseTree(nodeChild[i], treeArr);
+        }
+    }
+    return treeArr
+}
+function traverseNode(node, treeArr) {
+    delete node.child;
+    treeArr.push(node);
+    return treeArr;
+}
+//树类数组排序结束

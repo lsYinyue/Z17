@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "CM3230";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<div class="page-main">
+    <div class=" x_average">
+        <div class="average heBtnMenu">
+            @*<span class="l ml-5">
+                    <a class="btn btn-secondary size-S radius" onclick="" href="javascript:;">编辑</a>
+                </span>*@
+            @*<div class="l">
+                    <span class="l ml-5">
+                        仓库：
+                    </span>
+                    <span class="l ml-5 mr-15" style="width:180px;">
+                        <select class="select" name="brandclass" id="systemType" size="1" v-model="moduleType">
+                            <option value="PC">PC</option>
+                            <option value="MOB">MOB</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="l">
+                    <span class="l ml-5">
+                        仓位：
+                    </span>
+                    <span class="l ml-5 mr-15" style="width:180px;">
+                        <select class="select" name="brandclass" id="systemType" size="1" v-model="moduleType">
+                            <option value="PC">在职</option>
+                            <option value="MOB">离职</option>
+                            <option value="MOB1">退休</option>
+                        </select>
+                    </span>
+                </div>*@
+            <div class="l">
+                <span class="l ml-5">
+                    关键字：
+                </span>
+                <span class="l ml-5" style="width:180px;">
+                    <input type="text" class="input-text dsearch size-MINI" />
+                </span>
+            </div>
+            <div class="l ml-10">
+                <a class="btn btn-primary size-S " onclick="" href="javascript:;">查&nbsp;&nbsp;询</a>
+            </div>
+
+            <div class="r ml-10">
+                <a class="btn btn-success radius size-S" style="line-height:1.6em;" href="javascript:location.replace(location.href);" title="刷新">刷新</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="tableBlock">
+
+        <div class="mt-5">
+            <table class="table table-border table-bordered table-hover table-bg table-sort">
+                <thead>
+                    <tr class="text-l">
+                        <th class="text-c" width="80px;">序号</th>
+                        <th>
+                            物料编号
+                        </th>
+                        <th>
+                            物料描述
+                        </th>
+                        <th>物料类型</th>
+                        <th>库存量</th>
+                        <th>
+                            计量单位
+                        </th>
+                        <th>库区</th>
+                        <th class="text-c">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-l">
+                        <td class="text-c" width="80px;">1</td>
+                        <td>
+                            2012010445
+                        </td>
+                        <td>
+                            沙发
+                        </td>
+                        <td>
+                            阿斯顿发顺丰三
+                        </td>
+                        <td>123123</td>
+                        <td>
+                          千克
+                        </td>
+
+                        <td>
+                            00012310
+                        </td>
+                        <td class="text-c">
+                            <a title="出库" href="javascript:;" onclick="layer_show('出库记录','../CM3231/CM3231')" class="ml-10" style="text-decoration:none"><i class="Hui-iconfont">&#xe644;</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

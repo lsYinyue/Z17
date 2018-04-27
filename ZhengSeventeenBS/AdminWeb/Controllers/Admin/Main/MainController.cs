@@ -7,60 +7,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Z17.MySql.Helpers;
+using Z17.MySql.Services;
 
 namespace AdminWeb.Controllers.Admin.Main
 {
     public class MainController : Controller
     {
-        // GET: Main
+        // GET: Index
         [CheckIsLoin]
-        public ActionResult Main()
-        {
-            ViewData["comppanyName"] = GetUserCompany();
-            return View();
-        }
         public ActionResult Index()
         {
-            
+            string Token = GetCookieToken.GetToken();
+            string UserName = AccessTokenService.Proxy.GetUserFromAccessToken(Token).UserName;
+            ViewData["UserName"] = UserName;
             return View();
-        }
-        /// <summary>
-        /// 获取登录用户的公司
-        /// </summary>
-        /// <returns></returns>
-        [CheckIsLoin]
-        public String GetUserCompany()
-        {
-            //获取token,userId
-            UserInfo UserInfo = LoginUsers.UserCache.GetUserInfo();
-            IMainService mainService = ServiceManager<IMainService>.Get();
-            JArray ret = mainService.GetUserCompany(UserInfo);
-
-            if (0 == ret.Count)
-            {
-                return "";
-            }
-            var company = ret.First?["company"]?["id"]?.ToString();
-            var comppanyName = ret.First?["company"]?["name"]?.ToString();
-
-            LoginUsers.UserCache.SetCompany(company, comppanyName);
-            return comppanyName;
         }
 
         /// <summary>
         /// 获取用户模块
         /// </summary>
         /// <returns></returns>
-        [CheckIsLoin]
-        public JArray GetUserModule()
+        public string GetUserModule()
         {
-            UserInfo UserInfo = LoginUsers.UserCache.GetUserInfo();
-
-
-            IMainService mainService = ServiceManager<IMainService>.Get();
-
-            JArray ret = mainService.GetUserModule(UserInfo);
-            return ret;
+            string Token = GetCookieToken.GetToken();
+            var ret = PermissionService.Proxy.GetUserMenuItems(Token);
+            return JsonHelper.Instance.ToJson(ret);
         }
     }
 }

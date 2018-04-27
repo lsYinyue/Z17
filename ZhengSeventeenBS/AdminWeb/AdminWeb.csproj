@@ -31,7 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Bin\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="linq2db">
+      <HintPath>..\..\..\DLL\linq2db.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -145,11 +148,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Admin\CM3000\CM3210Controller.cs" />
     <Compile Include="Controllers\Admin\CM3000\CM3110Controller.cs" />
     <Compile Include="Controllers\Admin\CM3000\CM3120Controller.cs" />
+    <Compile Include="Controllers\Admin\CM3000\CM3121Controller.cs" />
     <Compile Include="Controllers\Admin\CM3000\CM3130Controller.cs" />
     <Compile Include="Controllers\Admin\CM3000\CM3140Controller.cs" />
     <Compile Include="Controllers\Admin\CM3000\CM3150Controller.cs" />
+    <Compile Include="Controllers\Admin\CM3000\CM3220Controller.cs" />
+    <Compile Include="Controllers\Admin\CM3000\CM3230Controller.cs" />
+    <Compile Include="Controllers\Admin\CM3000\CM3231Controller.cs" />
+    <Compile Include="Controllers\Admin\CM3000\CM3240Controller.cs" />
     <Compile Include="Controllers\Admin\Main\LoginController.cs" />
     <Compile Include="Controllers\Admin\Main\MainController.cs" />
     <Compile Include="Controllers\Admin\TS1000\TS1010Controller.cs" />
@@ -157,12 +166,17 @@
     <Compile Include="Controllers\Admin\TS1000\TS1012Controller.cs" />
     <Compile Include="Controllers\Admin\TS1000\TS1020Controller.cs" />
     <Compile Include="Controllers\Admin\TS1000\TS1030Controller.cs" />
+    <Compile Include="Controllers\Admin\TS1000\TS1040Controller.cs" />
+    <Compile Include="Controllers\Admin\TS1000\TS1050Controller.cs" />
+    <Compile Include="Controllers\Admin\TS\TS0040Controller.cs" />
+    <Compile Include="Controllers\Admin\TS\TS0041Controller.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MyClasses\CheckIsLoin.cs" />
+    <Compile Include="MyClasses\GetCookieToken.cs" />
     <Compile Include="MyClasses\LoginUserItem.cs" />
     <Compile Include="MyClasses\LoginUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -495,14 +509,26 @@
     <Content Include="Views\TS1020\TS1020.cshtml" />
     <Content Include="Views\CM3130\CM3130.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\TS0040\TS0040.cshtml" />
+    <Content Include="Views\TS0041\TS0041.cshtml" />
+    <Content Include="Views\CM3120\CM3120.cshtml" />
+    <Content Include="Views\TS1040\TS1040.cshtml" />
+    <Content Include="Views\CM3121\CM3121.cshtml" />
+    <Content Include="Views\CM3210\CM3210.cshtml" />
+    <Content Include="Views\CM3220\CM3220.cshtml" />
+    <Content Include="Views\CM3240\CM3240.cshtml" />
+    <Content Include="Views\TS1050\TS1050.cshtml" />
+    <Content Include="Views\CM3230\CM3230.cshtml" />
+    <Content Include="Views\CM3231\CM3231.cshtml" />
+    <Content Include="Views\CM3140\CM3141.cshtml" />
+    <Content Include="Views\CM3210\CM3211.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Admin\BM2000\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\CM3120\" />
+    <Folder Include="Views\CM2100\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\TS\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -525,6 +551,10 @@
     <ProjectReference Include="..\Z17.Core\Z17.Core.csproj">
       <Project>{f2735220-4888-4235-8c4c-6396c6ad60c7}</Project>
       <Name>Z17.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Z17.MySql\Z17.MySql.csproj">
+      <Project>{49b187e6-50b5-4dc3-849c-96d58866e404}</Project>
+      <Name>Z17.MySql</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

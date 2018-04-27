@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "TS1050";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<div class="page-container">
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l ml-10 pt-5 pb-5">
+            系统类型：
+        </span>
+        <span class="l ml-5" style="width:150px;">
+            <select class="select pt-5 pb-5" name="brandclass" size="1">
+                <option value="1" selected>pc</option>
+                <option value="0">mob</option>
+            </select>
+        </span>
+        <span class="l ml-5">
+            <a class="btn btn-primary radius" onclick="system_category_add('添加模块','TS0001Add')" href="javascript:;">主要按钮</a>
+        </span>
+        <span class="l ml-5">
+            <a class="btn btn-secondary radius" onclick="" href="javascript:;">次要按钮</a>
+        </span>
+        <span class="l ml-5">
+            <a class="btn btn-success radius" onclick="" href="javascript:;">成功</a>
+        </span>
+        <span class="l ml-5">
+            <a class="btn btn-warning radius" onclick="" href="javascript:;">警告</a>
+        </span>
+        <span class="l ml-5">
+            <a class="btn btn-danger radius" onclick="" href="javascript:;">危险</a>
+        </span>
+        <span class="l ml-5">
+            <a class="btn btn-link radius" onclick="" href="javascript:;">链接</a>
+        </span>
+        <span class="l ml-5 ">
+            <a class="btn btn-block radius" onclick="" href="javascript:;">块级按钮</a>
+        </span>
+        <a class="btn btn-success radius r" style="line-height:1.6em;" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </div>
+</div>
+<script type="text/javascript" src="../../Content/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="../../Content/datatables/1.10.16/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../Content/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+
+    /*系统-栏目-添加*/
+    function system_category_add(title, url, w, h) {
+        layer_show(title, url, w, h);
+    }
+    /*系统-栏目-编辑*/
+    function system_category_edit(title, url, id, w, h) {
+        layer_show(title, url, w, h);
+    }
+    /*系统-栏目-删除*/
+    function system_category_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            $.ajax({
+                type: 'POST',
+                url: '',
+                dataType: 'json',
+                success: function (data) {
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!', { icon: 1, time: 1000 });
+                },
+                error: function (data) {
+                    console.log(data.msg);
+                },
+            });
+        });
+    }
+</script>
+

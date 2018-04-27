@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Z17.Core.Dtos;
-using Z17.Core.Helpers;
-using Z17.Core.Services;
+using Z17.MySql.Dtos;
+using Z17.MySql.Helpers;
+using Z17.MySql.Services;
 
 namespace AdminWeb.Controllers.admin.main
 {
@@ -18,44 +18,41 @@ namespace AdminWeb.Controllers.admin.main
         public ActionResult Login()
         {
             //清空cookies
-            if (Request.Cookies["zhengCookies"] != null)
+            string Token = GetCookieToken.GetToken();
+            if (!string.IsNullOrEmpty(Token))
             {
-                LoginUsers.UserCache.LoginOut();
-                HttpCookie zhengCookies = new HttpCookie("zhengCookies");
-                zhengCookies.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(zhengCookies);
+                //LoginUsers.UserCache.LoginOut();
+                //缺少数据库登出
+                HttpCookie Z17Cookie = new HttpCookie("Z17Cookie");
+                Z17Cookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(Z17Cookie);
             }
             return View();
         }
+
         /// <summary>
         /// 登录
         /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        public int LoginCheck(string username, string password)
+        public string LoginService(string username, string password)
         {
-            ILoginService loginService = ServiceManager<ILoginService>.Get();
-            JObject ret = loginService.LoginCheck(username, password);
-            if (ret["id"] != null)
+            try
             {
+                var Token = AccessTokenService.Proxy.Login(username, password);
                 //存储userId
-                HttpCookie zhengCookies = new HttpCookie("zhengCookies");
-                zhengCookies["userId"] = ret["userId"].ToString();
-                zhengCookies.Expires = DateTime.Now.AddDays(1);
-                Response.Cookies.Add(zhengCookies);
-                // 设置登录凭证
-                LoginUsers.UserCache.Login(ret["id"].ToString());
-                return 1;
+                HttpCookie Z17Cookie = new HttpCookie("Z17Cookie");
+                Z17Cookie["Token"] = Token;
+                Z17Cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(Z17Cookie);
+                return "登录成功";
             }
-            else
+            catch (Exception e)
             {
-                return 0;
-            }
+                return e.Message.ToString();
+            };
         }
 
-        public string getItems(string username)
-        {
-            var ret = PermissionService.Proxy.GetUserMenuItems(username);
-            return JsonHelper.Instance.ToJson(ret);
-        }
     }
 }

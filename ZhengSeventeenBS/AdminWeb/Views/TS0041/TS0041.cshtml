@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "新增模块";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+<input type="hidden" id="module" value='@ViewData["module"]'>
+<div class="page-container" id="wrapMain">
+    <div class="form form-horizontal">
+
+        <div class="row cl x_average">
+            <label class="form-label col-xs-4 col-sm-2">父节点：</label>
+            <div class="formControls col-xs-8 col-sm-9 x_average">
+                <select class="select pt-5 pb-5" v-model="module.parent" id="moduleParent">
+                    <option :value="item.id" :data-num="item.pageEnNo" :data-parentno="item.pageNo" v-for="item in moduleType" v-if="item.type==module.type">{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">系统类型：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <select class="select pt-5 pb-5" v-model="module.type" id="moduleType">
+                    <option value="PC">系统菜单</option>
+                    <option value="MOB">移动端菜单</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">模块名称：</label>
+            <div class="formControls col-xs-8 col-sm-9 x_average">
+                <input type="text" name="" id="" placeholder="" v-model="module.pageEnNo" class="input-text" style=" width:10%" />
+                <input type="number" v-model="module.pageNo" class="input-text average ml-15" />
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">@*<span class="c-red">*</span>*@模块地址：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" v-model="module.pagePath">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">是否启用：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <select class="select pt-5 pb-5" v-model="module.enabled">
+                    <option value="Y">启用</option>
+                    <option value="N">不启用</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button onClick="" class="btn btn-primary radius" type="submit">提交</button>
+                <button onClick="" class="btn btn-default radius" type="submit">取消</button>
+            </div>
+        </div>
+    </div>
+</div>

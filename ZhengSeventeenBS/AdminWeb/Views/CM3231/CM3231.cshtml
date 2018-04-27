@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "原料出库";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+<div class="page-container" id="wrapMain">
+    <div class="form form-horizontal">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">出库方式：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <select class="select pt-5 pb-5" v-model="module.type" id="moduleType">
+                    <option value="PC">生产使用</option>
+                    <option value="PC">过期处理</option>
+                    <option value="MOB">出售外卖</option>
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">出库数量：</label>
+            <div class="formControls col-xs-8 col-sm-9 x_average">
+                <input type="number" v-model="module.pageNo" class="input-text average mr-15" />
+                <input type="text" name="" id="" placeholder="" value="千克/包" v-model="module.pageEnNo" disabled class="input-text text-c mr-15" style="width:100px;font-size:12px;" />
+                <input type="number" v-model="module.pageNo" class="input-text average mr-15" />
+                <input type="text" placeholder="" value="包" v-model="module.pageEnNo" disabled class="input-text text-c" style="width:100px;font-size:12px;" />
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">出库金额：</label>
+            <div class="formControls col-xs-8 col-sm-9 x_average">
+                <input type="number" v-model="module.pageNo" class="input-text average mr-15" />
+                <input type="text" placeholder="" value="元/千克" v-model="module.pageEnNo" disabled class="input-text text-c mr-15" style="width:100px;font-size:12px;" />
+                <input type="number" disabled v-model="module.pageNo" class="input-text average mr-15" />
+                <input type="text" value="元" v-model="module.pageEnNo" disabled class="input-text text-c" style="width:100px;font-size:12px;" />
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">备注：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="abstract" class="textarea" placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button onClick="btnOk()" class="btn btn-primary radius" type="submit">确认提交</button>
+                <button onClick="" class="btn btn-default radius" type="submit">清空数据</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+

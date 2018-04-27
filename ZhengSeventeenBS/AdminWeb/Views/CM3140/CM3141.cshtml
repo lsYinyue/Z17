@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "新增物料";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+<input type="hidden" id="MaterielValue" value='@ViewData["Materiel"]'>
+<div class="page-container" id="wrapMain">
+    <div class="form form-horizontal">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">物料名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" v-model="Materiel.CMtrlNm">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">物料描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" v-model="Materiel.CMtrlDesc">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">计量单位：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" placeholder="请输入计量单位" v-model="Materiel.CUnit" class="input-text" />
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">包装单位：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" placeholder="请输入包装单位" v-model="Materiel.CPageUnit" class="input-text" />
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button onClick="btnOk()" class="btn btn-primary radius" type="submit">&nbsp;提&nbsp;&nbsp;交&nbsp;</button>
+                <button onClick="layer_close()" class="btn btn-default radius" type="submit"> &nbsp;取&nbsp;&nbsp;消&nbsp;</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var $app = new Vue({
+        el: '#wrapMain', //作用域
+        data: {
+            Materiel: {
+                CMtrlNm: "",
+                CMtrlDesc: "",
+                CUnit: "",
+                CPageUnit: "",
+            }
+        },
+        methods: {
+
+        }
+    });
+    $(document).ready(function () {
+        if ("" != $('#MaterielValue').val()) {
+        var Materiel = $.parseJSON($('#MaterielValue').val());
+            $app.Materiel = Materiel;
+        }
+    });
+    //确认上传
+    function btnOk() {
+        var Materiel = $app.Materiel;
+
+        if ("" == Materiel.CMtrlNm) {
+            layer.msg('请输入物料名称', { icon: 5, time: 1500 });
+            return;
+        };
+        //if ("" == Materiel.CUnit) {
+        //    layer.msg('请输入物料计量单位', { icon: 5, time: 1500 });
+        //    return;
+        //};
+
+        var url = "/CM3140/SaveMateriel";
+        var msgText = '添加成功';
+        if ("" != $('#MaterielValue').val()) {
+            url = "/CM3140/EditMateriel";
+            msgText = "修改成功";
+        }
+        var layerIndex = layer.load(3, { time: 15 * 1000 });
+        $.ajax({
+            "url": url,
+            "type": "POST",
+            "dataType": "json",
+            "data": {
+                "Materiel": JSON.stringify(Materiel)
+            }
+        }).done(function (ret) {
+            layer.close(layerIndex);
+            if (1 == ret) {
+                var parentMethodValue = parent.reloadTable();
+                layer.msg(msgText, { icon: 1, time: 1500 });
+                setTimeout(function () {
+                    layer_close();
+                }, 1500);
+            } else {
+                layer.msg('操作失败，请重试！', { icon: 5, time: 1500 });
+            }
+        }).fail(function (header, status, errorThrown) {
+            //fail body
+            layer.close(layerIndex);
+            layer.msg('操作失败，请重试！', { icon: 5, time: 1500 });
+        })
+    }
+</script>

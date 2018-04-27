@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "原料入库";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<div class="page-main">
+    <div class=" ml-5 mb-20">
+        <div class="form form-horizontal">
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">入库数量：</label>
+                <div class="formControls col-xs-8 col-sm-9 x_average">
+                    <input type="number" v-model="module.pageNo" class="input-text average mr-15" />
+                    <input type="text" name="" id="" placeholder="" value="千克/包" v-model="module.pageEnNo" disabled class="input-text text-c mr-15" style="width:100px;font-size:12px;" />
+                    <input type="number" v-model="module.pageNo" class="input-text average mr-15" />
+                    <input type="text" placeholder="" value="包" v-model="module.pageEnNo" disabled class="input-text text-c" style="width:100px;font-size:12px;" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">入库金额：</label>
+                <div class="formControls col-xs-8 col-sm-9 x_average">
+                    <input type="number" v-model="module.pageNo" class="input-text average mr-15" />
+                    <input type="text" placeholder="" value="元/千克" v-model="module.pageEnNo" disabled class="input-text text-c mr-15" style="width:100px;font-size:12px;" />
+                    <input type="number" disabled v-model="module.pageNo" class="input-text average mr-15" />
+                    <input type="text" value="元" v-model="module.pageEnNo" disabled class="input-text text-c" style="width:100px;font-size:12px;" />
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">备注：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <textarea name="abstract" class="textarea" placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                    <button onClick="btnOk()" class="btn btn-primary radius" type="submit">确认提交</button>
+                    <button onClick="" class="btn btn-default radius" type="submit">清空数据</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="x_average">
+        <div class="average heBtnMenu">
+            <div class="l">
+                <span class="l ml-5">
+                    搜索：
+                </span>
+                <span class="l ml-5" style="width:180px;">
+                    <input type="text" class="input-text dsearch size-MINI" />
+                </span>
+            </div>
+            <span class="r ml-10">
+                <a class="btn btn-success radius size-S" style="line-height:1.6em;" href="javascript:location.replace(location.href);" title="刷新">刷新</a>
+            </span>
+            <div class="r ml-10">
+                <a class="btn btn-primary size-S radius" onclick="system_category_add('新增物料','../TS1011/TS1011')" href="javascript:;">新增物料</a>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 ">
+        <table class="table table-border table-bordered table-hover table-bg table-sort">
+            <thead>
+                <tr class="text-l">
+                    <th class="text-c" width="80px;">选择</th>
+                    <th>
+                        物料编号
+                    </th>
+                    <th>
+                        物料名称
+                    </th>
+                    <th>
+                        物料描述
+                    </th>
+                    <th> 供应商</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-l">
+                    <td class="text-c" width="80px;">
+                        <input type="radio" name="demo-radio1">
+                    </td>
+                    <td>
+                        CM01001201
+                    </td>
+                    <td>
+                        物料名称
+                    </td>
+                    <td>
+                        物料描述
+                    </td>
+                    <td>
+                        供应商
+                    </td>
+                </tr>
+                <tr class="text-l">
+                    <td class="text-c" width="80px;">
+                        <input type="radio" name="demo-radio1">
+                    </td>
+                    <td>
+                        CM01001200
+                    </td>
+                    <td>
+                        白发泡料
+                    </td>
+                    <td>
+                        白发抛料。。。阿萨德发空间奥斯卡来得及付款
+                    </td>
+                    <td>
+                        白发抛料。。。阿萨德发空间奥斯卡来得及付款
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../Content/datatables/1.10.16/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+
+</script>

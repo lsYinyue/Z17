@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace AdminWeb.Controllers.Admin.CM3000
 {
-    public class CM3120Controller : Controller
+    public class CM3121Controller : Controller
     {
-        // GET: CM3120
-        public ActionResult CM3120()
+        // GET: CM3121
+        public ActionResult CM3121()
         {
             return View();
         }

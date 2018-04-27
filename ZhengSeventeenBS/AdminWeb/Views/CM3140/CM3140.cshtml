@@ -6,34 +6,7 @@
 <div class="page-main">
     <div class="x_average">
         <div class="average heBtnMenu">
-            @*<span class="l ml-5">
-                    <a class="btn btn-secondary size-S radius" onclick="" href="javascript:;">编辑</a>
-                </span>*@
-            <span class="r ml-10">
-                <a class="btn btn-success radius size-S" style="line-height:1.6em;" href="javascript:location.replace(location.href);" title="刷新">刷新</a>
-            </span>
-            <span class="r ml-10">
-                <a class="btn btn-secondary size-S radius" onclick="openWuliao('物料特性', '../TS1011/TS1011')" href="javascript:;">物料特性</a>
-            </span>
-            <span class="r ml-10">
-                <a class="btn btn-primary size-S radius" onclick="" href="javascript:;">新增物料</a>
-            </span>
-        </div>
-    </div>
-    <div class="tableBlock">
-        <div class="searchMenu mb-10" id="wrapMain">
             <div class="l">
-                <span class="l ml-5">
-                    物料类型：
-                </span>
-                <span class="l ml-5 mr-15" style="width:180px;">
-                    <select class="select" name="brandclass" id="systemType" size="1" v-model="moduleType">
-                        <option value="PC">PC</option>
-                        <option value="MOB">MOB</option>
-                    </select>
-                </span>
-            </div>
-            <div class="r">
                 <span class="l ml-5">
                     搜索：
                 </span>
@@ -41,57 +14,46 @@
                     <input type="text" class="input-text dsearch size-MINI" />
                 </span>
             </div>
+            <span class="l ml-10">
+                <a class="btn btn-primary size-S radius" onclick="layer_show('新增物料', '../CM3140/CM3141')" href="javascript:;">新增物料</a>
+            </span>
+            <span class="l ml-10">
+                <a class="btn btn-secondary size-S radius" onclick="openWuliao('物料特性', '../TS1011/TS1011')" href="javascript:;">物料特性</a>
+            </span>
+
+            <span class="r ml-10">
+                <a class="btn btn-success radius size-S" style="line-height:1.6em;" href="javascript:location.replace(location.href);" title="刷新">刷新</a>
+            </span>
+
         </div>
-        <div class="mt-5">
-            <table class="table table-border table-bordered table-hover table-bg table-sort">
+    </div>
+    <div class="tableBlock x_average">
+        <div class="mt-5" style="">
+            <table class="table table-border table-bordered table-hover table-bg table-sort" id="table-Materiel">
                 <thead>
                     <tr class="text-l">
-                        <th class="text-c" width="80px;">序号</th>
+                        <th class="text-c">序号</th>
+                        <th>
+                            物料名称
+                        </th>
+                        <th style="max-width:50%;">
+                            物料描述
+                        </th>
                         <th>
                             物料编号
                         </th>
                         <th>
-                            物料描述
-                        </th>
-                        <th>
-                            物料类型（编号）
-                        </th>
-                        <th>物料类型</th>
-                        <th>
                             计量单位
                         </th>
                         <th>
-                            计量单位描述
+                            包装单位
                         </th>
-                        <th>历史价格</th>
-                        <th width="80px;">操作</th>
+                        <th >操作</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-c" width="80px;">序号</td>
-                        <td>
-                            物料编号
-                        </td>
-                        <td>
-                            物料描述
-                        </td>
-                        <td>
-                            物料类型（编号）
-                        </td>
-                        <td>物料类型</td>
-                        <td>
-                            计量单位
-                        </td>
-                        <td>
-                            计量单位描述
-                        </td>
-                        <td>历史价格</td>
-                        <td width="80px;">操作</td>
-                    </tr>
-                </tbody>
             </table>
         </div>
+        <div class="average"></div>
     </div>
     <div class="" id="content" style="height:100%; display:none;background:#F3F3F4;">
         <div class="page-main">
@@ -140,7 +102,142 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../../Content/datatables/1.10.16/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function () {
+        var dataTb = $('#table-Materiel').DataTable({
+            "scrollY": $(window).height() - 200,//设置高度
+            "scrollY": $(window).width() - 100,//设置宽度
+            "scrollCollapse": true,//设置显示滚动条
+            "language": dataTablesLanguage,
+            "bAutoWidth":false,
+            "dom": '<"top">rt<"bottom"ilp>',
+            "ordering": false,
+            //"order": [[2, "asc"]],//设置默认排序
+            "lengthMenu": [5, 10, 20, 40],//设置每页显示多少
+            "iDisplayLength": 10,
+            "columns": [{
+                "className": "text-c",
+                "sDefaultContent": ""
+            }, {
+                "data": "CMtrlNm",
+                "className": "fontWeight",
+                "sDefaultContent": ""
+            }, {
+                "data": "CMtrlDesc",
+                "sDefaultContent": ""
+            }, {
+                "data": "CMtrlNo",
+                "className": "text-c",
+                "sDefaultContent": ""
+            }, {
+                "data": "CUnit",
+                "className": "text-c",
+                "sDefaultContent": "",
+            }, {
+                "data": "CPageUnit",
+                "className": "text-c",
+                "sDefaultContent": "",
+            }, {
+                "className": "text-c",
+                "render": function (data, type, row) {
+                    var MaterielId = row["Id"];
+                    return getEditBtn(MaterielId);
+                }
+            }],
+            "ajax": function (data, callback, settings) {
+                //封装请求参数
+                GetMaterielList(function (ret) {
+                    var returnData = {
+                        "data": ret
+                    };
+                    callback(returnData);
+                });
+            }
+        });
+        //增加操作按钮
+        function getEditBtn(Id) {
+            var str = '<a title="编辑" href="javascript:;" onclick="EditMateriel(\'编辑\',\'../CM3140/CM3141\',\'' + Id + '\')" style="text-decoration:none"><i class="iconfont sui-icon-bianjishuru"></i></a>' +
+                '<a title="删除" href="javascript:;" onclick="DelMateriel(\'' + Id + '\')" class="ml-10" style="text-decoration:none"><i class="iconfont sui-icon-empty"></i></a>';
+            return str;
+        }
+        /*添加序号*/
+        dataTb.on('order.dt search.dt',
+            function () {
+                dataTb.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+        /*搜索模块*/
+        $('.dsearch').on('keyup click', function () {
+            var tsval = $(".dsearch").val()
+            dataTb.search(tsval, false, false).draw();
+        });
+
+    });
+    //刷新
+    function reloadTable() {
+        $('#table-Materiel').DataTable().ajax.reload();
+    }
+
+    //获取数据
+    function GetMaterielList(callback) {
+        var param = {};
+        $.ajax({
+            type: "GET",
+            url: "/CM3140/GetAllMateriels",
+            cache: false, //禁用缓存
+            dataType: "json",
+            success: function (ret) {
+                //封装返回数据
+                callback(ret);
+            }
+        });
+    }
+    /*系统-栏目-编辑*/
+    function EditMateriel(title, pageUrl, Id) {
+        var url = pageUrl + "?Id=" + Id;
+        layer_show(title, url);
+    }
+
+    /*删除*/
+    function DelMateriel(Id) {
+        var layerConIndex = layer.confirm('确认要删除吗？', function (index) {
+            layer.close(layerConIndex);
+            var Materiel = {
+                Id: Id
+            };
+            var url = "/CM3140/DeleteMateriel";
+            var layerIndex = layer.load(3, { time: 15 * 1000 });
+            $.ajax({
+                "url": url,
+                "type": "POST",
+                "dataType": "json",
+                "data": {
+                    "Materiel": JSON.stringify(Materiel)
+                }
+            }).done(function (ret) {
+
+                layer.close(layerIndex);
+                if (1 == ret) {
+                    reloadTable();//刷新
+                    layer.msg('删除成功', { icon: 1, time: 1500 });
+                } else {
+                    layer.msg('操作失败，请重试！', { icon: 5, time: 1500 });
+                }
+            }).fail(function (header, status, errorThrown) {
+                //fail body
+                layer.close(layerIndex);
+                layer.msg('操作失败，请重试！', { icon: 5, time: 1500 });
+            })
+        });
+    }
+
+    //打开物料特性
     function openWuliao(title, url) {
         if (title == null || title == '') {
             title = false;
