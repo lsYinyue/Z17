@@ -1,0 +1,12 @@
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\obj\Debug\Z17.MySql.csproj.CoreCompileInputs.cache
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\Z17.MySql.dll
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\Z17.MySql.pdb
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\linq2db.dll
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\MySql.Data.dll
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\Newtonsoft.Json.dll
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\linq2db.pdb
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\linq2db.xml
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\bin\Debug\Newtonsoft.Json.xml
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\obj\Debug\Z17.MySql.csproj.CopyComplete
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\obj\Debug\Z17.MySql.dll
+D:\Code\C#\备份\ZhengSeventeenBS\Z17.MySql\obj\Debug\Z17.MySql.pdb
